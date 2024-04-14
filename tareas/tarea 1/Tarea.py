@@ -160,10 +160,10 @@ if __name__ == "__main__":
 
         #Movimiento Alas pequeñas:
         ala_pequeña_fondo.rotation[0] = np.sin(4*TIME+0.3)*0.7 + np.pi/4
-        ala_pequeña_frente.rotation[0] = np.sin(4*TIME)*0.7 - (3*np.pi)/4
+        ala_pequeña_frente.rotation[0] = np.sin(4*TIME)*0.7 + (3*np.pi)/4
         #Movimiento Alas grandes
         ala_grande_frente.rotation[0] = np.sin(4*TIME+0.3)*0.7 + np.pi/4
-        ala_grande_fondo.rotation[0] = np.sin(4*TIME)*0.7 - (3*np.pi)/4
+        ala_grande_fondo.rotation[0] = np.sin(4*TIME)*0.7 + (3*np.pi)/4
 
         #Movimiento horizontal
         if cabeza.position[0] <= -1.5:
