@@ -105,9 +105,11 @@ if __name__ == "__main__":
 
     """------------------ Colores de las partes de la libélula -------------------"""
     
-    color_alas_fondo = [61/255, 199/255, 203/255]
-    color_alas_frente = [64/255, 252/255, 255/255]
-    colors_body = [60/255, 0/255, 255/255]
+    color_alas_fondo_pequeñas = [125/255, 51/255, 181/255]
+    color_alas_frente_pequeñas = [181/255, 83/255, 255/255]
+    color_alas_frente_grandes = [255/255, 83/255, 228/255]
+    color_alas_fondo_grandes = [182/255, 67/255, 164/255]
+    colors_body = [53/255, 199/255, 255/255]
 
 
     intensities_body = [1]*10
@@ -126,27 +128,27 @@ if __name__ == "__main__":
     cabeza.position = np.array([-0.32+1, 0.08, 0], dtype=np.float32)
 
     #Alas pequeñas
-    ala_pequeña_frente = Model(shapes.Triangle["position"], color_alas_frente*3)
+    ala_pequeña_frente = Model(shapes.Triangle["position"], color_alas_frente_pequeñas*3)
     ala_pequeña_frente.init_gpu_data(pipeline)
     ala_pequeña_frente.scale = np.array([0.17, 0.33, 0], dtype=np.float32)
     ala_pequeña_frente.rotation[2] = (np.pi/180) * 122
     ala_pequeña_frente.position = np.array([-0.18+1, 0.07, 0], dtype=np.float32)
 
-    ala_pequeña_fondo = Model(shapes.Triangle["position"], color_alas_fondo*3)
+    ala_pequeña_fondo = Model(shapes.Triangle["position"], color_alas_fondo_pequeñas*3)
     ala_pequeña_fondo.init_gpu_data(pipeline)
     ala_pequeña_fondo.scale = np.array([0.15, 0.33, 0], dtype=np.float32)
     ala_pequeña_fondo.rotation[2] = (np.pi/180) * 130
     ala_pequeña_fondo.position = np.array([-0.18+1, 0.07, 0], dtype=np.float32)
 
     #Alas grandes
-    ala_grande_frente = Model(shapes.TriangleEsc["position"], color_alas_frente*3)
+    ala_grande_frente = Model(shapes.TriangleEsc["position"], color_alas_frente_grandes*3)
     ala_grande_frente.init_gpu_data(pipeline)
     ala_grande_frente.scale = np.array([0.3, 0.15, 0], dtype=np.float32)
     ala_grande_frente.rotation[2] = (np.pi/180) * 10
     ala_grande_frente.position = np.array([-0.15+1, 0.01, 0], dtype=np.float32)
 
     
-    ala_grande_fondo = Model(shapes.TriangleEsc["position"], color_alas_fondo*3)
+    ala_grande_fondo = Model(shapes.TriangleEsc["position"], color_alas_fondo_grandes*3)
     ala_grande_fondo.init_gpu_data(pipeline)
     ala_grande_fondo.scale = np.array([0.3, 0.15, 0], dtype=np.float32)
     ala_grande_fondo.rotation[2] = (np.pi/180) * 10
@@ -159,11 +161,11 @@ if __name__ == "__main__":
         TIME += dt
 
         #Movimiento Alas pequeñas:
-        ala_pequeña_fondo.rotation[0] = np.sin(4*TIME+0.3)*0.7 + np.pi/4
-        ala_pequeña_frente.rotation[0] = np.sin(4*TIME)*0.7 + (3*np.pi)/4
+        ala_pequeña_fondo.rotation[0] = np.sin(800*TIME+0.3)*0.7 + np.pi/4
+        ala_pequeña_frente.rotation[0] = np.sin(800*TIME)*0.7 + (3*np.pi)/4
         #Movimiento Alas grandes
-        ala_grande_frente.rotation[0] = np.sin(4*TIME+0.3)*0.7 + np.pi/4
-        ala_grande_fondo.rotation[0] = np.sin(4*TIME)*0.7 + (3*np.pi)/4
+        ala_grande_frente.rotation[0] = np.sin(800*TIME+0.3)*0.7 + np.pi/4
+        ala_grande_fondo.rotation[0] = np.sin(800*TIME)*0.7 + (3*np.pi)/4
 
         #Movimiento horizontal
         if cabeza.position[0] <= -1.5:
@@ -201,11 +203,11 @@ if __name__ == "__main__":
         # se le dice al pipeline que se va a usar
         pipeline.use()
 
-        pipeline["u_transform"] = ala_pequeña_fondo.get_transform()
-        ala_pequeña_fondo.draw()
-
         pipeline["u_transform"] = ala_grande_fondo.get_transform()
         ala_grande_fondo.draw()
+
+        pipeline["u_transform"] = ala_pequeña_fondo.get_transform()
+        ala_pequeña_fondo.draw()
 
         pipeline["u_transform"] = body.get_transform()
         body.draw(GL.GL_TRIANGLES)
