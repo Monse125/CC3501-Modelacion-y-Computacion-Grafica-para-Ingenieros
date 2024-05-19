@@ -1,6 +1,10 @@
 # README
-
+## Tarea 2: "El vuelo de una libélula en 3D, simple"
 ### Monserrat Montero Troncoso
+
+Le he preguntado a ChatGPT como hacer correctamente uso de un código que presenta una licencia, cualquier comentario acerca de esto será bien recibido para saber como proceder en el futuro. Este proyecto se basa en el código original de Daniel Calderon, licenciado bajo la licencia MIT. Puedes encontrar el código original [https://github.com/ivansipiran/grafica]
+
+#### Decisiones de desarrollo:
 
 Con ejecutar "Tarea.py" debería funcionar.
 
