@@ -657,9 +657,10 @@ def createColorTriangleEsc(r, g, b):
     # Defining the location and colors of each vertex  of the shape
     vertices = [
         #   positions        colors
-        -1, -1, 0.0,  r, g, b,
         0, 0, 0,  r, g, b,
-        0.32, -0.95, 0.0,  r, g, b
+        1,-0.3,0,r,g,b,
+        1, 1, 0.0,  r, g, b
+        
         ]
 
     # Defining connections among vertices
