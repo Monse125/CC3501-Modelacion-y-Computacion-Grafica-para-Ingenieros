@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0jdxppjvbh24"]
+[gd_scene load_steps=8 format=3 uid="uid://c0jdxppjvbh24"]
 
 [ext_resource type="Texture2D" uid="uid://sdcljx8f5dhj" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_jmcea"]
 [ext_resource type="Texture2D" uid="uid://nxfjrmnbay4t" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_wfsc5"]
-[ext_resource type="PackedScene" uid="uid://kicjwmh02uwf" path="res://scenes camera/player.tscn" id="3_bryoi"]
 [ext_resource type="PackedScene" uid="uid://bplxmgipknmxy" path="res://scenes/kart_test.tscn" id="4_2tdbp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wtri"]
@@ -66,8 +65,6 @@ environment = SubResource("Environment_cpfpx")
 [node name="DirectionalLight" type="DirectionalLight3D" parent="Enviroment"]
 transform = Transform3D(0.813152, 0.411573, -0.411573, 0, 0.707107, 0.707107, 0.582052, -0.574985, 0.574985, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("3_bryoi")]
 
 [node name="kart" parent="." instance=ExtResource("4_2tdbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9843, 4.10625, 1.3658)

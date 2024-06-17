@@ -301,6 +301,8 @@ def createLibelula(pipeline, colores):
     tailCube = bs.createColorCube(rBody,gBody,bBody)
     gpuTailCube = createGPUShape(pipeline,tailCube)
 
+    gpuCuadradoNegro = createGPUShape(pipeline,bs.createColorQuad(0,0,0))
+
     # Idear un ala superior
     wingSup = sg.SceneGraphNode("wingS")
     wingSup.transform = tr.scale(-1, -2, 0)
@@ -381,6 +383,54 @@ def createLibelula(pipeline, colores):
     ])
     tail.childs += [gpuTailCube]
 
+    
+    lenteIzq = sg.SceneGraphNode("lenteIzq")
+    lenteIzq.transform = tr.matmul([
+        tr.translate(0.21,-1.4,0.3),
+        tr.rotationX((np.pi/180)*90),
+        tr.scale(0.3,0.2,1)
+        
+    ])
+    lenteIzq.childs += [gpuCuadradoNegro]
+    lenteDer = sg.SceneGraphNode("lenteDer")
+    lenteDer.transform = tr.matmul([
+        tr.translate(-0.21,-1.4,0.3),
+        tr.rotationX((np.pi/180)*90),
+        tr.scale(0.3,0.2,1)
+        
+    ])
+    lenteDer.childs = [gpuCuadradoNegro]
+    marcoIzq = sg.SceneGraphNode("marcoIzq")
+    marcoIzq.transform = tr.matmul([
+        tr.translate(0.4,-1.17,0.35),
+        tr.rotationX((np.pi/180)*90),
+        tr.rotationY((np.pi/180)*90),
+        tr.scale(0.45,0.1,1)
+    ])
+    marcoIzq.childs = [gpuCuadradoNegro]
+    marcoDer = sg.SceneGraphNode("marcoDer")
+    marcoDer.transform = tr.matmul([
+        tr.translate(-0.4,-1.17,0.35),
+        tr.rotationX((np.pi/180)*90),
+        tr.rotationY((np.pi/180)*90),
+        tr.scale(0.45,0.1,1)
+    ])
+    marcoDer.childs = [gpuCuadradoNegro]
+    marcoFrontal = sg.SceneGraphNode("marcoFrontal")
+    marcoFrontal.transform = tr.matmul([
+        tr.translate(0,-1.4,0.35),
+        tr.rotationX((np.pi/180)*90),
+        tr.scale(0.8,0.1,1)
+    ])
+    marcoFrontal.childs = [gpuCuadradoNegro]
+
+    lentes = sg.SceneGraphNode("lentes")
+    lentes.childs += [lenteDer]
+    lentes.childs += [lenteIzq]
+    lentes.childs += [marcoIzq]
+    lentes.childs += [marcoDer]
+    lentes.childs += [marcoFrontal]
+
     # All pieces together
     libelula = sg.SceneGraphNode("libelula")
     libelula.childs += [body]
@@ -390,6 +440,7 @@ def createLibelula(pipeline, colores):
     libelula.childs += [supWing2]
     libelula.childs += [infWing1]
     libelula.childs += [infWing2]
+    libelula.childs += [lentes]
     return libelula
 
 def crearSuelo(pipeline):
@@ -575,9 +626,9 @@ if __name__ == "__main__":
     if not glfw.init():
         glfw.set_window_should_close(window, True)
 
-    width = 800
+    width = 1000
     height = 800
-    title = "tarea 2"
+    title = "tarea 3"
     window = glfw.create_window(width, height, title, None, None)
 
     if not window:

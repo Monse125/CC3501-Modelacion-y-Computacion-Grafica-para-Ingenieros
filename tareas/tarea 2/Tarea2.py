@@ -31,8 +31,8 @@ class Controller:
     def __init__(self):
         self.fillPolygon = True
         self.showAxis = True
-        self.viewPos = np.array([20,20,20])
-        self.camUp = np.array([0, 1, 0])
+        self.viewPos = np.array([0,-8,2])
+        self.camUp = np.array([0, 0,1])
         self.distance = 20
 
 
@@ -69,7 +69,7 @@ def setPlot(pipeline, mvpPipeline):
 def setView(pipeline, mvpPipeline):
     view = tr.lookAt(
             controller.viewPos,
-            np.array([0,0,0]),
+            np.array([0,0,3]),
             controller.camUp
         )
 
@@ -98,16 +98,16 @@ def on_key(window, key, scancode, action, mods):
         glfw.set_window_should_close(window, True)
     
     elif key == glfw.KEY_1:
-        controller.viewPos = np.array([controller.distance,controller.distance,controller.distance]) #Vista diagonal 1
-        controller.camUp = np.array([0,1,0])
+        controller.viewPos = np.array([0,-8,2]) #Vista diagonal 1
+        controller.camUp = np.array([0,0,1])
     
     elif key == glfw.KEY_2:
         controller.viewPos = np.array([0,0,controller.distance]) #Vista frontal
         controller.camUp = np.array([0,1,0])
 
     elif key == glfw.KEY_3:
-        controller.viewPos = np.array([controller.distance,0,0]) #Vista lateral
-        controller.camUp = np.array([0,1,0])
+        controller.viewPos = np.array([controller.distance/3,0,2.5]) #Vista lateral
+        controller.camUp = np.array([0,0,1])
 
     elif key == glfw.KEY_4:
         controller.viewPos = np.array([0,controller.distance,0]) #Vista superior
@@ -134,6 +134,8 @@ def createLibelula(pipeline, colores):
     rWinsSup,gWingsSup,bWingsSup = colores[1]
     rWinsInf,gWingsSInf,bWingsInf = colores[2]
     # Creating shapes on GPU memory
+
+    
 
     wingSupTriangle = bs.createColorTriangle(rWinsSup,gWingsSup,bWingsSup)
     gpuWingSupTriangle = es.GPUShape().initBuffers()
@@ -235,15 +237,72 @@ def createLibelula(pipeline, colores):
     ])
     tail.childs += [gpuTailCube]
 
+    gpuCuadradoNegro = createGPUShape(pipeline,bs.createColorQuad(0,0,0))
+    lenteIzq = sg.SceneGraphNode("lenteIzq")
+    lenteIzq.transform = tr.matmul([
+        tr.translate(0.2,-1.4,0.3),
+        tr.rotationX((np.pi/180)*90),
+        tr.scale(0.3,0.2,1)
+        
+    ])
+    lenteIzq.childs += [gpuCuadradoNegro]
+    lenteDer = sg.SceneGraphNode("lenteDer")
+    lenteDer.transform = tr.matmul([
+        tr.translate(-0.2,-1.4,0.3),
+        tr.rotationX((np.pi/180)*90),
+        tr.scale(0.3,0.2,1)
+        
+    ])
+    lenteDer.childs = [gpuCuadradoNegro]
+    lentes = sg.SceneGraphNode("lentes")
+
+    marcoIzq = sg.SceneGraphNode("marcoIzq")
+    marcoIzq.transform = tr.matmul([
+        tr.translate(0.4,-1.17,0.35),
+        tr.rotationX((np.pi/180)*90),
+        tr.rotationY((np.pi/180)*90),
+        tr.scale(0.45,0.1,1)
+    ])
+    marcoIzq.childs = [gpuCuadradoNegro]
+
+    marcoDer = sg.SceneGraphNode("marcoDer")
+    marcoDer.transform = tr.matmul([
+        tr.translate(-0.4,-1.17,0.35),
+        tr.rotationX((np.pi/180)*90),
+        tr.rotationY((np.pi/180)*90),
+        tr.scale(0.45,0.1,1)
+    ])
+    marcoDer.childs = [gpuCuadradoNegro]
+
+    marcoFrontal = sg.SceneGraphNode("marcoFrontal")
+    marcoFrontal.transform = tr.matmul([
+        tr.translate(0,-1.4,0.35),
+        tr.rotationX((np.pi/180)*90),
+        tr.scale(0.6,0.1,1)
+    ])
+    marcoFrontal.childs = [gpuCuadradoNegro]
+
+
+    lentes.childs += [lenteDer]
+    lentes.childs += [lenteIzq]
+    lentes.childs += [marcoIzq]
+    lentes.childs += [marcoDer]
+    lentes.childs += [marcoFrontal]
+
+
+
+
     # All pieces together
     libelula = sg.SceneGraphNode("libelula")
     libelula.childs += [body]
     libelula.childs += [head]
     libelula.childs += [tail]
     libelula.childs += [supWing1]
+
     libelula.childs += [supWing2]
     libelula.childs += [infWing1]
     libelula.childs += [infWing2]
+    libelula.childs += [lentes]
     return libelula
 
 def crearSuelo(pipeline):
@@ -410,79 +469,7 @@ if __name__ == "__main__":
     redCarNode.transform = tr.matmul([
         tr.translate(0,0,2)
     ])
-    sueloNode = crearSuelo(mvpPipeline)
-    ramita1Node = crearRamitas(mvpPipeline)
-    ramita1Node.transform = tr.matmul([
-        tr.translate(-3,-4,-0.5),
-        tr.scale(0.4,0.4,1)
-    ])
-
-    ramita2Node = crearRamitas(mvpPipeline)
-    ramita2Node.transform = tr.matmul([
-        tr.translate(-5,5,1),
-        tr.scale(0.4,0.4,1)
-    ])
-    ramita3Node = crearRamitas(mvpPipeline)
-    ramita3Node.transform = tr.matmul([
-        tr.translate(2,-2,-0.5),
-        tr.scale(0.4,0.4,1)
-    ])
-    ramita4Node = crearRamitas(mvpPipeline)
-    ramita4Node.transform = tr.matmul([
-        tr.translate(0,6,1),
-        tr.scale(0.4,0.4,1)
-    ])
-
-    ramita5Node = crearRamitas(mvpPipeline)
-    ramita5Node.transform = tr.matmul([
-        tr.translate(0,-8,1),
-        tr.scale(0.4,0.4,1)
-    ])
-
-    ramita6Node = crearRamitas(mvpPipeline)
-    ramita6Node.transform = tr.matmul([
-        tr.translate(-8,3,1),
-        tr.scale(0.4,0.4,1)
-    ])
-
-    ramita7Node = crearRamitas(mvpPipeline)
-    ramita7Node.transform = tr.matmul([
-        tr.translate(3,7,1),
-        tr.scale(0.4,0.4,1)
-    ])
-
-    ramita8Node = crearRamitas(mvpPipeline)
-    ramita8Node.transform = tr.matmul([
-        tr.translate(4,-7,1),
-        tr.scale(0.4,0.4,1)
-    ])
-
-    ramita9Node = crearRamitas(mvpPipeline)
-    ramita9Node.transform = tr.matmul([
-        tr.translate(4,-3,1),
-        tr.scale(0.4,0.4,1)
-    ])
-
-    # Función para crear ramitas en posiciones aleatorias fuera del rango [-7, 7]
-    def crearRamitasAleatorias(mvpPipeline, num_ramitas, min_val=-10, max_val=10, exclusion_range=7):
-        ramitas = []
-        for _ in range(num_ramitas):
-            while True:
-                x = random.uniform(min_val, max_val)
-                y = random.uniform(min_val, max_val)
-                # Asegurarse de que la ramita esté fuera del cuadrado [-7, 7]
-                if abs(x) > exclusion_range or abs(y) > exclusion_range:
-                    break
-            ramitaNode = crearRamitas(mvpPipeline)
-            ramitaNode.transform = tr.matmul([
-                tr.translate(x, y, 1),
-                tr.scale(0.4, 0.4, 1)
-            ])
-            ramitas.append(ramitaNode)
-        return ramitas
-
-    # Crear 10 ramitas adicionales fuera del rango [-7, 7]
-    ramitasAdicionales = crearRamitasAleatorias(mvpPipeline, 10)
+    
 
     
 
@@ -525,52 +512,7 @@ if __name__ == "__main__":
         
         """------------------ Movimiento de la libelula -------------------"""
         
-        # oscila entre 0 y 1
-        t = np.sin(glfw.get_time())*0.5 + 0.5
-
-        LibX = bezierCurve(t,P[0][0], P[1][0], P[2][0], P[3][0])
-        LibY = bezierCurve(t, P[0][1], P[1][1], P[2][1], P[3][1])
-        LibZ = (np.sin(glfw.get_time() * 2)*0.5) + 2
-
-        redCarNode.transform = tr.translate(LibX,LibY,LibZ)
-        print(LibZ)
-
-        wingSup1MoveNode = sg.findNode(redCarNode,"SupWing1")
-        wingSup1MoveNode.transform = tr.matmul([
-                            tr.translate(0.1,0.2,0.4),
-                            tr.rotationZ((np.pi/180)*-20),
-                            tr.rotationX((np.pi/180)*12),
-                            tr.rotationY(np.sin(t*40) + (np.pi/180)*90)
-                            
-                            
-                    ])
-        
-        wingSup2MoveNode = sg.findNode(redCarNode,"SupWing2")
-        wingSup2MoveNode.transform = tr.matmul([
-                            tr.translate(-0.1,0.2,0.4),
-                            tr.rotationZ((np.pi/180)*20),
-                            tr.rotationX((np.pi/180)*12),
-                            tr.rotationY(-np.sin(t*40) + (np.pi/180)*90)
-                            
-                    ])
-        
-        wingInf1MoveNode = sg.findNode(redCarNode,"InfWing1")
-        wingInf1MoveNode.transform = tr.matmul([
-                            #tr.translate(0,0,0),
-                            tr.translate(-0.38,0.5,0),
-                            #tr.rotationX((np.pi/180)*-12),
-                            #tr.rotationZ((np.pi/180)*20),
-                            tr.rotationY(-np.sin(t*60)*1.3 + (np.pi/180)*-25),   
-                    ])
-        
-        wingInf2MoveNode = sg.findNode(redCarNode,"InfWing2")
-        wingInf2MoveNode.transform = tr.matmul([
-                            #tr.translate(0,0,0),
-                            tr.translate(0.38,0.5,0),
-                            #tr.rotationX((np.pi/180)*-12),
-                            #tr.rotationZ((np.pi/180)*20),
-                            tr.rotationY(np.sin(t*60)*1.3 + (np.pi/180)*-155),   
-                    ])
+       
         
 
 
@@ -579,21 +521,9 @@ if __name__ == "__main__":
 
         # Drawing the Car
         sg.drawSceneGraphNode(redCarNode, mvpPipeline, "model")
-        sg.drawSceneGraphNode(ramita1Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita2Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita3Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita4Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita5Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita6Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita7Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita8Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(ramita9Node,mvpPipeline,"model")
-        sg.drawSceneGraphNode(sueloNode,mvpPipeline,"model")
+       
         
 
-        # Agregar las nuevas ramitas a la escena o a la estructura de datos correspondiente
-        for ramita in ramitasAdicionales:
-            sg.drawSceneGraphNode(ramita,mvpPipeline,"model")
         
 
         # Once the render is done, buffers are swapped, showing only the complete scene.
