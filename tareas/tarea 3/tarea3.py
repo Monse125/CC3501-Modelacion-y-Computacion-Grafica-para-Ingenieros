@@ -22,7 +22,7 @@ import random
 __author__ = "Ivan Sipiran"
 __license__ = "MIT"
 
-cant_random = 40
+cant_random = 30
 dis_gen = 25
 LIGHT_FLAT    = 0
 LIGHT_GOURAUD = 1
@@ -65,9 +65,9 @@ def setPlot(texPipeline,pipeline, mvpPipeline):
     glUniform3f(glGetUniformLocation(pipeline.shaderProgram, "Kd"), 0.9, 0.9, 0.9)
     glUniform3f(glGetUniformLocation(pipeline.shaderProgram, "Ks"), 1.0, 1.0, 1.0)
 
-    glUniform3f(glGetUniformLocation(pipeline.shaderProgram, "lightPosition"), 5, 5, 5)
+    glUniform3f(glGetUniformLocation(pipeline.shaderProgram, "lightPosition"), 15, 5, 10)
     
-    glUniform1ui(glGetUniformLocation(pipeline.shaderProgram, "shininess"), 1000)
+    glUniform1ui(glGetUniformLocation(pipeline.shaderProgram, "shininess"), 100)
     glUniform1f(glGetUniformLocation(pipeline.shaderProgram, "constantAttenuation"), 0.001)
     glUniform1f(glGetUniformLocation(pipeline.shaderProgram, "linearAttenuation"), 0.1)
     glUniform1f(glGetUniformLocation(pipeline.shaderProgram, "quadraticAttenuation"), 0.01)
@@ -642,7 +642,7 @@ if __name__ == "__main__":
 
     # Assembling the shader program (pipeline) with both shaders
     mvpPipeline = es.SimpleModelViewProjectionShaderProgram()
-    pipeline = ls.SimpleGouraudShaderProgram()
+    pipeline = ls.SimpleTextureGouraudShaderProgram()
     texPipeline = es.SimpleTextureModelViewProjectionShaderProgram()
     
     # Telling OpenGL to use our shader program
@@ -827,8 +827,11 @@ if __name__ == "__main__":
         
 
         glUseProgram(mvpPipeline.shaderProgram)
-        sg.drawSceneGraphNode(redCarNode, mvpPipeline, "model")
         sg.drawSceneGraphNode(escena_color, mvpPipeline, "model")
+        sg.drawSceneGraphNode(redCarNode, mvpPipeline, "model")
+
+
+        
         
         
         # Once the render is done, buffers are swapped, showing only the complete scene.

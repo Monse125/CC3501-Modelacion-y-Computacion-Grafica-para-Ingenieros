@@ -1,0 +1,76 @@
+extends Control
+
+@onready var morado: CheckButton = $VBoxContainer/VBoxContainer/Colores/Morado
+@onready var azul: CheckButton = $VBoxContainer/VBoxContainer/Colores/Azul
+@onready var blanco: CheckButton = $VBoxContainer/VBoxContainer/Colores/Blanco
+@onready var rosado: CheckButton = $VBoxContainer/VBoxContainer/Colores/Rosado
+@onready var rojo: CheckButton = $VBoxContainer/VBoxContainer/Colores/Rojo
+
+
+@onready var libre: CheckButton = $VBoxContainer/VBoxContainer2/HBoxContainer2/Libre
+@onready var vuelta_rapida: CheckButton = $VBoxContainer/VBoxContainer2/HBoxContainer2/Vuelta_Rapida
+
+@onready var colors = ButtonGroup.new()
+@onready var mode = ButtonGroup.new()
+
+@onready var play: Button = $HBoxContainer/Play
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	morado.button_group = colors
+	azul.button_group = colors
+	blanco.button_group = colors
+	rosado.button_group = colors
+	rojo.button_group = colors
+	
+	blanco.button_pressed = true
+	
+	libre.button_group = mode
+	vuelta_rapida.button_group = mode
+	
+	libre.button_pressed = true
+	
+	# Conectar señales de los botones de color
+	morado.connect("pressed", Callable(self, "_on_color_button_pressed"))
+	azul.connect("pressed", Callable(self, "_on_color_button_pressed"))
+	blanco.connect("pressed", Callable(self, "_on_color_button_pressed"))
+	rosado.connect("pressed", Callable(self, "_on_color_button_pressed"))
+	rojo.connect("pressed", Callable(self, "_on_color_button_pressed"))
+	# Conectar señales de los botones de modo
+	libre.connect("pressed",Callable(self, "_on_mode_button_pressed"))
+	vuelta_rapida.connect("pressed", Callable(self, "_on_mode_button_pressed"))
+	# Conectar señal del botón de jugar (asumiendo que tienes un botón llamado 'play_button')
+	play.connect("pressed", Callable(self, "_on_play_pressed"))
+	
+
+# Función para manejar la selección de botones de color
+func _on_color_button_pressed(button: CheckButton) -> void:
+	# Desactivar todos los botones del grupo excepto el seleccionado
+	for child in $VBoxContainer/VBoxContainer/Colores.get_children():
+		if child is CheckButton and child.group == button.group:
+			child.pressed = (child == button)
+
+# Función para manejar la selección de modos
+func _on_mode_button_pressed(button: CheckButton) -> void:
+	# Desactivar todos los botones del grupo excepto el seleccionado
+	for child in $VBoxContainer/VBoxContainer2/HBoxContainer2.get_children():
+		if child is CheckButton and child.group == button.group:
+			child.pressed = (child == button)
+
+# Función para iniciar el juego
+func _on_play_pressed() -> void:
+	var color_selected: Color = Color(1, 1, 1)  # Color por defecto si no se encuentra ninguno seleccionado
+	var mode_selected = ""
+	# Determinar qué color está seleccionado
+	var boton_color = colors.get_pressed_button()
+	color_selected = boton_color.modulate
+	
+	var boton_mode = mode.get_pressed_button()
+	mode_selected = boton_mode.text
+	
+	# Realizar acciones basadas en el color y el modo seleccionados
+	if mode_selected == "Practica Libre":
+		print(color_selected,mode_selected)
+		#get_tree().change_scene("res://scenes/track.tscn")
+	else:
+		print(color_selected,mode_selected)

@@ -21,9 +21,8 @@ Hay que implementar una libélula 3D que se mueva (ya sea por cuenta propia o po
 
 #### Acerca del código:
 
-Al ejecutar 'Tarea.py' debería funcionar correctamente. Sin embargo, genero MUCHOS elementos (ramitas y flores) de forma aleatoria. Realicé varios test para encontrar la configuración más estética, pero me di cuenta (sin juzgar) de que no todos los computadores tienen las mismas capacidades que el mío. Por eso, limité considerablemente la cantidad de elementos generados. En caso de necesitar limitar aún más la cantidad para poder corregir correctamente, solo es necesario disminuir el valor de la variable al inicio del código (aproximadamente en la línea 25)
+Al ejecutar 'Tarea.py' debería funcionar correctamente. Sin embargo, genero algunos elementos (ramitas y flores) de forma aleatoria por lo que la carga de la escena puede demorar un poco (unos segundos) pues no es el aalgoritmo utilizado no es el más eficiente. Realicé varios test para encontrar la configuración más estética, pero me di cuenta (sin juzgar) de que no todos los computadores tienen las mismas capacidades que el mío. Por eso, limité considerablemente la cantidad de elementos generados. En caso de necesitar limitar aún más la cantidad para poder corregir correctamente, solo es necesario disminuir el valor de la variable al inicio del código (aproximadamente en la línea 25)
 
-Ademas, en honor al tiempo disponible, el algoritmo que genera los elementos de forma aleatoria no es para nada el mas eficiente así que podría demorar un poquito (unos segundos) el arranque de la visualización.
 
 ##### Tomás, la libélula
 
@@ -35,7 +34,7 @@ Al igual que en mi tarea 2, Tomás (la libélula) está formado por: una cabeza 
 
 ##### Escenario
 
-El escenario está formado por diversas ramitas verdad. Las mas cercanas a Tomás están puestas por mi, sin embargo el resto se ponen de forma al azar al rededor de la escena principal (para que no parezca tan vacio).
+El escenario está formado por diversas ramitas verdes. Las mas cercanas a Tomás están puestas por mi, sin embargo el resto se ponen de forma al azar al rededor de la escena principal (para que no parezca tan vacio).
 
 He añadido lavandas porque me dijeron que a las libelulas les gustan y quería que Tomás se sintiese a gusto en su bucle temporal. De manera que, tanto las lavandas (tallo y flor) como el suelo poseen texturas.
 
@@ -45,12 +44,5 @@ He arreglado la cámara del proyecto respecto a mi tarea 2, enderezándola. Adem
 
 Por ello, he decidido aprender cómo hacer una especie de cinemática en lugar de simplemente usar 'keys' para cambiar el POV. De esta manera, la cámara ahora sigue a Tomás automáticamente."
 
-##### Iluminación
-
-
-
-#### Funciones que arreglar/agregar:
-
-- Ver lo de la iluminación
 
 

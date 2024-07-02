@@ -96,7 +96,7 @@ func _physics_process(delta):
 			is_sprinting = false
 			is_crouching = false
 	
-	if Input.is_action_pressed("free_look") or !$SlidingTimer.is_stopped():
+	"""if Input.is_action_pressed("free_look") or !$SlidingTimer.is_stopped():
 		is_free_looking = true
 		if $SlidingTimer.is_stopped():
 			$Neck/Head/Eyes.rotation.z = -deg_to_rad(
@@ -117,6 +117,7 @@ func _physics_process(delta):
 			0.0,
 			delta*LERP_SPEED
 		)
+		"""
 	
 	if not is_on_floor():
 		velocity.y -= gravity * delta

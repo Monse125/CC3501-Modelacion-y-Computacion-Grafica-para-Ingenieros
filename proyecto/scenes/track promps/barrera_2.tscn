@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://qq83gds2uiun"]
+
+[ext_resource type="PackedScene" uid="uid://dedylmbfks04q" path="res://scenes/track promps/pila_neumaticos_blanca.tscn" id="1_jig2l"]
+[ext_resource type="PackedScene" uid="uid://b32s7xbg263g4" path="res://scenes/track promps/pila_neumaticos_roja.tscn" id="2_h8kh0"]
+
+[node name="barrera_2" type="Node3D"]
+
+[node name="pila_neumaticos_roja" parent="." instance=ExtResource("1_jig2l")]
+transform = Transform3D(0.4, 0, 0, 0, -0.4, 3.49691e-08, 0, -3.49691e-08, -0.4, -0.00747675, 1.065, 0.730887)
+
+[node name="pila_neumaticos_roja2" parent="." instance=ExtResource("2_h8kh0")]
+transform = Transform3D(0.4, 0, 0, 0, -0.4, 3.49691e-08, 0, -3.49691e-08, -0.4, 0.00486052, 1.065, -0.737617)

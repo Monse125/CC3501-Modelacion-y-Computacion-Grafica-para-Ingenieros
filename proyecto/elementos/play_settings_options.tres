@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://84iywll3hmw0"]
+
+[ext_resource type="FontFile" uid="uid://c6g3fah83ee23" path="res://assets/fonts/SuperBrigade-xRoW0.otf" id="1_uy87d"]
+
+[resource]
+default_font = ExtResource("1_uy87d")
+default_font_size = 50

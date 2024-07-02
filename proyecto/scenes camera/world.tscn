@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0jdxppjvbh24"]
+[gd_scene load_steps=9 format=3 uid="uid://c0jdxppjvbh24"]
 
 [ext_resource type="Texture2D" uid="uid://sdcljx8f5dhj" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_jmcea"]
 [ext_resource type="Texture2D" uid="uid://nxfjrmnbay4t" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_wfsc5"]
-[ext_resource type="PackedScene" uid="uid://bplxmgipknmxy" path="res://scenes/kart_test.tscn" id="4_2tdbp"]
+[ext_resource type="PackedScene" uid="uid://xxhnnb71gsxn" path="res://scenes/kart_test_1.tscn" id="3_kild1"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_1hjs5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wtri"]
 albedo_texture = ExtResource("1_wfsc5")
@@ -66,5 +67,13 @@ environment = SubResource("Environment_cpfpx")
 transform = Transform3D(0.813152, 0.411573, -0.411573, 0, 0.707107, 0.707107, 0.582052, -0.574985, 0.574985, 0, 0, 0)
 shadow_enabled = true
 
-[node name="kart" parent="." instance=ExtResource("4_2tdbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9843, 4.10625, 1.3658)
+[node name="car" type="Node3D" parent="."]
+
+[node name="kart_test1" parent="car" instance=ExtResource("3_kild1")]
+transform = Transform3D(0.434775, 0, 0.900539, 0, 1, 0, -0.900539, 0, 0.434775, 19.513, 0.921661, 3.34913)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.954584, -0.0670232, -0.290307, -0.20994, 0.842696, 0.49577, 0.211412, 0.534201, -0.818495, 19.2773, 7.35887, -7.32496)
+fov = 65.7729
+script = ExtResource("4_1hjs5")
+follow_this_path = NodePath("../car/kart_test1")

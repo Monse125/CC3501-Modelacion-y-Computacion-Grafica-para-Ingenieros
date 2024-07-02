@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwlmvapetqon6"]
+
+[ext_resource type="Script" path="res://scenes/game_menus/play_settings.gd" id="1_t3x8a"]
+[ext_resource type="FontFile" uid="uid://c6g3fah83ee23" path="res://assets/fonts/SuperBrigade-xRoW0.otf" id="2_c30ih"]
+[ext_resource type="Texture2D" uid="uid://j2t8vu2bkesm" path="res://assets/imgs/Negro.jpg" id="2_d6f0x"]
+[ext_resource type="Theme" uid="uid://84iywll3hmw0" path="res://elementos/play_settings_options.tres" id="3_ol7c0"]
+[ext_resource type="Theme" uid="uid://rweho5wec0df" path="res://elementos/menu_font.tres" id="5_fc8o6"]
+
+[sub_resource type="FontVariation" id="FontVariation_y4b38"]
+base_font = ExtResource("2_c30ih")
+
+[sub_resource type="Theme" id="Theme_nwsgq"]
+default_font = SubResource("FontVariation_y4b38")
+default_font_size = 70
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_shv1m"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t3x8a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 800.0
+texture = ExtResource("2_d6f0x")
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 37.0
+offset_right = 1112.0
+offset_bottom = 113.0
+theme = SubResource("Theme_nwsgq")
+text = "Configura tu juego! "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 51.0
+offset_top = 140.0
+offset_right = 1106.0
+offset_bottom = 506.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ol7c0")
+text = "Elije el Color de tu Auto:"
+
+[node name="Colores" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 40
+
+[node name="Morado" type="CheckButton" parent="VBoxContainer/VBoxContainer/Colores"]
+modulate = Color(0.552941, 0.00392157, 1, 1)
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+button_group = SubResource("ButtonGroup_shv1m")
+text = "MORADO"
+
+[node name="Azul" type="CheckButton" parent="VBoxContainer/VBoxContainer/Colores"]
+modulate = Color(0.0392157, 0.470588, 1, 1)
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Azul"
+
+[node name="Blanco" type="CheckButton" parent="VBoxContainer/VBoxContainer/Colores"]
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Blanco"
+
+[node name="Rosado" type="CheckButton" parent="VBoxContainer/VBoxContainer/Colores"]
+modulate = Color(1, 0, 0.929412, 1)
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Rosado"
+
+[node name="Rojo" type="CheckButton" parent="VBoxContainer/VBoxContainer/Colores"]
+modulate = Color(0.823529, 0, 0, 1)
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Rojo"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_ol7c0")
+text = "Modo de Juego:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 200
+
+[node name="Libre" type="CheckButton" parent="VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Practica Libre"
+
+[node name="Vuelta_Rapida" type="CheckButton" parent="VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Vuelta Rapida"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 554.0
+offset_right = 731.0
+offset_bottom = 622.0
+
+[node name="Play" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "---->  PLAY <----
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 562.0
+offset_right = 144.0
+offset_bottom = 630.0
+
+[node name="Menu" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Menu"

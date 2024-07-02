@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://rweho5wec0df"]
+
+[ext_resource type="FontFile" uid="uid://d16fjsidw7fcs" path="res://assets/fonts/AmericanCaptain-MdEY.otf" id="1_8vbj1"]
+
+[resource]
+default_font = ExtResource("1_8vbj1")
+default_font_size = 60

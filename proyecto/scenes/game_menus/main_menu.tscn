@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4cyivc8gv11n"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_jd5xm"]
+[ext_resource type="Texture2D" uid="uid://cxmokrawqhaf7" path="res://assets/imgs/FondoMainMenu.jpg" id="2_b4n2n"]
+[ext_resource type="Theme" uid="uid://gtnxfc5hxrj5" path="res://elementos/MainFont.tres" id="3_tbdrn"]
+[ext_resource type="Theme" uid="uid://rweho5wec0df" path="res://elementos/menu_font.tres" id="4_7s7d8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0hpu"]
+bg_color = Color(0.862745, 0.862745, 0.862745, 0.615686)
+skew = Vector2(1, 0)
+border_width_left = 20
+border_width_right = 20
+border_blend = true
+corner_radius_top_left = 60
+corner_detail = 20
+shadow_size = 6
+anti_aliasing_size = 10.0
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jd5xm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -324.0
+offset_top = -2.0
+offset_right = 1162.0
+offset_bottom = 757.0
+texture = ExtResource("2_b4n2n")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 80.0
+offset_right = 1089.0
+offset_bottom = 166.0
+theme = ExtResource("3_tbdrn")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_k0hpu")
+text = "assetto corsa"
+uppercase = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 139.0
+offset_right = 1130.0
+offset_bottom = 225.0
+theme = ExtResource("3_tbdrn")
+theme_override_colors/font_color = Color(0.635294, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "FRUNA!!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 842.0
+offset_top = 394.0
+offset_right = 1074.0
+offset_bottom = 618.0
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_7s7d8")
+text = "play"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_7s7d8")
+text = "settings"

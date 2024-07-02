@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Simulador de Go-Kart"
-run/main_scene="res://scenes camera/world.tscn"
+run/main_scene="res://scenes/track.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/Global.gd"
 
 [input]
 
@@ -42,3 +46,29 @@ jump={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
 ]
 }
+crouch={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194326,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+sprint={
+"deadzone": 0.5,
+"events": []
+}
+free_look={
+"deadzone": 0.5,
+"events": []
+}
+JOY_ANALOG_LX={
+"deadzone": 0.5,
+"events": []
+}
+JOY_ANALOG_R2={
+"deadzone": 0.5,
+"events": []
+}
+
+[physics]
+
+common/physics_ticks_per_second=100
+common/max_physics_steps_per_frame=20
