@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://dfep1kivu837h"]
+
+[ext_resource type="PackedScene" uid="uid://b5keajx0ovjrp" path="res://scenes/track.tscn" id="1_2mbhd"]
+[ext_resource type="Script" path="res://scripts/main_game.gd" id="1_x1o5c"]
+[ext_resource type="PackedScene" uid="uid://blqrwfms7gln2" path="res://scenes/game_menus/menu_pause.tscn" id="2_tb4at"]
+[ext_resource type="Theme" uid="uid://rweho5wec0df" path="res://elementos/menu_font.tres" id="4_g642f"]
+[ext_resource type="Script" path="res://scenes/RaceLights.gd" id="5_up4lb"]
+[ext_resource type="Texture2D" uid="uid://cj0wcm0w6opjl" path="res://assets/imgs/semaforo/semaforo.png" id="6_7qqmo"]
+[ext_resource type="Texture2D" uid="uid://cnslcacf0lq7w" path="res://assets/imgs/semaforo/semaforo 1.png" id="7_1nr0f"]
+[ext_resource type="Texture2D" uid="uid://c8epmhy4m86tp" path="res://assets/imgs/semaforo/semaforo 2.png" id="8_p5i0a"]
+[ext_resource type="Texture2D" uid="uid://bkrabm4lk0gvw" path="res://assets/imgs/semaforo/semaforo 3.png" id="9_kl2ws"]
+[ext_resource type="Texture2D" uid="uid://ejls4rg3nba0" path="res://assets/imgs/semaforo/semaforo 4.png" id="10_vxvle"]
+[ext_resource type="Texture2D" uid="uid://bf341omh3so1p" path="res://assets/imgs/semaforo/semaforo 5.png" id="11_joasi"]
+[ext_resource type="Script" path="res://scenes/Timer.gd" id="12_600l7"]
+[ext_resource type="PackedScene" uid="uid://c6gv1kxxndnv6" path="res://scenes/karts/kart_test_3.tscn" id="13_18yyt"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="14_5pf6b"]
+
+[node name="vuelta_rapida" type="Node3D"]
+script = ExtResource("1_x1o5c")
+
+[node name="World" parent="." instance=ExtResource("1_2mbhd")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="menu_pause" parent="Control" instance=ExtResource("2_tb4at")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 215.0
+offset_top = 110.0
+offset_right = 915.0
+offset_bottom = 510.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="StartMsg" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="StartMsg"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 304.0
+offset_top = 132.0
+offset_right = 812.0
+offset_bottom = 510.0
+theme = ExtResource("4_g642f")
+text = "¿Are u ok?
+
+
+
+
+Press _ to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RaceLights" type="CanvasLayer" parent="."]
+script = ExtResource("5_up4lb")
+
+[node name="L0" type="TextureRect" parent="RaceLights"]
+offset_left = 354.0
+offset_top = 59.0
+offset_right = 839.0
+offset_bottom = 260.0
+texture = ExtResource("6_7qqmo")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="L1" type="TextureRect" parent="RaceLights"]
+offset_left = 354.0
+offset_top = 59.0
+offset_right = 839.0
+offset_bottom = 260.0
+texture = ExtResource("7_1nr0f")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="L2" type="TextureRect" parent="RaceLights"]
+offset_left = 354.0
+offset_top = 59.0
+offset_right = 839.0
+offset_bottom = 260.0
+texture = ExtResource("8_p5i0a")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="L3" type="TextureRect" parent="RaceLights"]
+visible = false
+offset_left = 354.0
+offset_top = 59.0
+offset_right = 839.0
+offset_bottom = 260.0
+texture = ExtResource("9_kl2ws")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="L4" type="TextureRect" parent="RaceLights"]
+visible = false
+offset_left = 354.0
+offset_top = 59.0
+offset_right = 839.0
+offset_bottom = 260.0
+texture = ExtResource("10_vxvle")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="L5" type="TextureRect" parent="RaceLights"]
+visible = false
+offset_left = 354.0
+offset_top = 59.0
+offset_right = 839.0
+offset_bottom = 260.0
+texture = ExtResource("11_joasi")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Timer" type="CanvasLayer" parent="."]
+script = ExtResource("12_600l7")
+
+[node name="TimerLabel" type="Label" parent="Timer"]
+offset_left = 530.0
+offset_top = 274.0
+offset_right = 570.0
+offset_bottom = 297.0
+
+[node name="car" type="Node3D" parent="."]
+transform = Transform3D(0.998782, 0, 0.0493383, 0, 1, 0, -0.0493383, 0, 0.998782, -148.012, 0.407153, 70.7018)
+
+[node name="kart_test3" parent="car" instance=ExtResource("13_18yyt")]
+transform = Transform3D(0.895191, 0, 0.445682, 0, 1, 0, -0.445682, 0, 0.895191, 0, 0, 0)
+freeze = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.9378, 59.8877)
+script = ExtResource("14_5pf6b")
+follow_this_path = NodePath("../car/kart_test3")

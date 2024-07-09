@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwlmvapetqon6"]
 
-[ext_resource type="Script" path="res://scenes/game_menus/play_settings.gd" id="1_t3x8a"]
+[ext_resource type="Script" path="res://scripts/play_settings.gd" id="1_7t768"]
 [ext_resource type="FontFile" uid="uid://c6g3fah83ee23" path="res://assets/fonts/SuperBrigade-xRoW0.otf" id="2_c30ih"]
 [ext_resource type="Texture2D" uid="uid://j2t8vu2bkesm" path="res://assets/imgs/Negro.jpg" id="2_d6f0x"]
 [ext_resource type="Theme" uid="uid://84iywll3hmw0" path="res://elementos/play_settings_options.tres" id="3_ol7c0"]
@@ -18,7 +18,7 @@ default_font_size = 70
 [node name="main" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_t3x8a")
+script = ExtResource("1_7t768")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -28,10 +28,10 @@ texture = ExtResource("2_d6f0x")
 
 [node name="Titulo" type="Label" parent="."]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 37.0
-offset_right = 1112.0
-offset_bottom = 113.0
+offset_left = 41.0
+offset_top = 27.0
+offset_right = 1108.0
+offset_bottom = 103.0
 theme = SubResource("Theme_nwsgq")
 text = "Configura tu juego! "
 
@@ -40,18 +40,18 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 51.0
-offset_top = 140.0
-offset_right = 1106.0
-offset_bottom = 506.0
+offset_left = 49.0
+offset_top = 111.0
+offset_right = 1104.0
+offset_bottom = 535.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 70
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -94,6 +94,23 @@ modulate = Color(0.823529, 0, 0, 1)
 layout_mode = 2
 theme = ExtResource("5_fc8o6")
 text = "Rojo"
+
+[node name="Colores2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Verde Fofo" type="CheckButton" parent="VBoxContainer/VBoxContainer/Colores2"]
+modulate = Color(0.701961, 0.909804, 0.14902, 1)
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Verde FOFO"
+
+[node name="Papaya" type="CheckButton" parent="VBoxContainer/VBoxContainer/Colores2"]
+modulate = Color(1, 0.4, 0, 1)
+layout_mode = 2
+theme = ExtResource("5_fc8o6")
+text = "Papaya
+"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

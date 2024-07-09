@@ -2,7 +2,7 @@ extends Camera3D
 
 @export var follow_this_path: NodePath
 @export var target_distance: float = 3.0
-@export var target_height: float = 2.0
+@export var target_height: float = 2
 
 var follow_this: Node3D = null
 var last_lookat: Vector3

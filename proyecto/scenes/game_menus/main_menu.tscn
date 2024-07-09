@@ -68,7 +68,7 @@ layout_mode = 2
 theme = ExtResource("4_7s7d8")
 text = "play"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Salir" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_7s7d8")
-text = "settings"
+text = "Exit"
